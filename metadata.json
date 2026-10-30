@@ -1,0 +1,6 @@
+{
+  "name": "Laku Kasir Pro",
+  "description": "Aplikasi kasir & POS modern lengkap dengan manajemen stok, struk digital, laporan laba rugi, dan transaksi cepat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
