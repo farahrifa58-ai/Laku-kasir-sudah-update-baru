@@ -229,9 +229,15 @@ class LakuKasirViewModel(application: Application) : AndroidViewModel(applicatio
         }
 
         val effectiveCashReceived = if (selectedPaymentMethod.value == "Tunai") {
-            cashReceivedAmount
+            if (cashReceivedAmount > 0) cashReceivedAmount else totalPayable
         } else {
             totalPayable
+        }
+
+        val effectiveChange = if (selectedPaymentMethod.value == "Tunai" && effectiveCashReceived > totalPayable) {
+            effectiveCashReceived - totalPayable
+        } else {
+            0.0
         }
 
         val isPaid = selectedPaymentMethod.value != "Kasbon"
@@ -247,7 +253,7 @@ class LakuKasirViewModel(application: Application) : AndroidViewModel(applicatio
             total = totalPayable,
             paymentMethod = selectedPaymentMethod.value,
             cashReceived = effectiveCashReceived,
-            changeAmount = changeAmount,
+            changeAmount = effectiveChange,
             customerName = customerName.value.trim(),
             customerPhone = customerPhone.value.trim(),
             isPaid = isPaid,
